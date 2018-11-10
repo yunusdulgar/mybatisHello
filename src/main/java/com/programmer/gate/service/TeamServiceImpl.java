@@ -5,6 +5,7 @@ import com.programmer.gate.repository.TeamRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,14 +17,10 @@ public class TeamServiceImpl implements TeamService {
   private TeamRepository teamRepository;
 
   @Override
+  @Cacheable("teams")
   public Team findOne(Long teamId){
 
-   // logger.error("!!!!!!! findOne : {}" ,teamId);
-    for (int i = 0; i < 10000 ; i++) {
-
-
-    }
-
+   logger.error("!!!!!!! findOne : {}" ,teamId);
     return teamRepository.findOne(teamId);
 
   }

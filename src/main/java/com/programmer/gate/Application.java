@@ -18,9 +18,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.programmer.gate.service.SoccerService;
+import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
 @EnableBatchProcessing
+@EnableCaching
 public class Application implements CommandLineRunner {
 
   Logger logger = LoggerFactory.getLogger(Application.class);
@@ -59,10 +61,7 @@ public class Application implements CommandLineRunner {
 
     List<Player> myBatisPlayer = new ArrayList<>();
 
-    Team team = teamRepository.findOne(1L);
-
-    logger.info("team : {}",team);
-
+    Team team1 = teamRepository.findOne(1L);
 
     for (int i = 1; i < 101; i++) {
       Player player = new Player();
@@ -70,7 +69,20 @@ public class Application implements CommandLineRunner {
       player.setName("yunus" + i);
       player.setNum(1);
       player.setPosition("poz" + i);
-      player.setTeam(team);
+      player.setTeam(team1);
+      myBatisPlayer.add(player);
+    }
+
+    Team team2 = teamRepository.findOne(2L);
+
+
+    for (int i = 1; i < 101; i++) {
+      Player player = new Player();
+      player.setId(Long.valueOf(200 + i));
+      player.setName("ahmet" + i);
+      player.setNum(1);
+      player.setPosition("poz" + i);
+      player.setTeam(team2);
       myBatisPlayer.add(player);
     }
 

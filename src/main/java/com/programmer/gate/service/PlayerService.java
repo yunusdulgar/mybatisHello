@@ -10,4 +10,6 @@ public interface PlayerService {
   List<Player> getAllPlayers();
 
   List<Player> getOnePlayer();
+
+  Player findOne(Long id);
 }

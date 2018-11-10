@@ -23,6 +23,10 @@ class PlayerServiceImpl implements PlayerService {
     return players;
   }
 
+  public Player findOne(Long playerId) {
+    return playerRepository.findOne(playerId);
+  }
+
 
 
 
